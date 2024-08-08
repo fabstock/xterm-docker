@@ -12,8 +12,11 @@ app.use(express.static(__dirname));
 
 wss.on('connection', (ws) => {
     ws.on('message', (message) => {
+        // Convertir le message en chaîne de caractères
+        const command = message.toString();
+
         // Exécuter la commande reçue
-        exec(message, (error, stdout, stderr) => {
+        exec(command, (error, stdout, stderr) => {
             if (error) {
                 ws.send(`Erreur: ${error.message}`);
                 return;
