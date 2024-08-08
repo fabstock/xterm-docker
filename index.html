@@ -11,26 +11,40 @@
 
     <script src="https://unpkg.com/xterm/lib/xterm.js"></script>
     <script src="https://unpkg.com/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
-    <script>
-        // Initialiser le terminal
-        const terminal = new Terminal();
-        const fitAddon = new FitAddon.FitAddon();
-        terminal.loadAddon(fitAddon);
-        terminal.open(document.getElementById('terminal'));
-        fitAddon.fit();
-        terminal.write('Bienvenue dans xterm.js!\r\n');
 
-        // WebSocket pour la communication avec le serveur Node.js
-        const socket = new WebSocket('ws://' + window.location.host);
-        
-        terminal.onData(data => {
-            socket.send(data);
-        });
 
-        socket.onmessage = function(event) {
-            terminal.write(event.data + '\r\n');
-        };
-    </script>
+<script>
+    const terminal = new Terminal();
+    const fitAddon = new FitAddon.FitAddon();
+    terminal.loadAddon(fitAddon);
+    terminal.open(document.getElementById('terminal'));
+    fitAddon.fit();
+    terminal.write('Bienvenue dans xterm.js!\r\n');
+
+    const socket = new WebSocket('ws://' + window.location.host);
+
+    let commandBuffer = '';
+
+    terminal.onData(data => {
+        // Afficher le caractère dans le terminal
+        terminal.write(data);
+
+        // Vérifier si l'utilisateur a appuyé sur Entrée (Retour chariot)
+        if (data === '\r' || data === '\n') {
+            // Envoyer la commande complète au serveur
+            socket.send(commandBuffer);
+
+            // Effacer le buffer après l'envoi
+            commandBuffer = '';
+        } else {
+            // Ajouter le caractère au buffer
+            commandBuffer += data;
+        }
+    });
+
+    socket.onmessage = function(event) {
+        terminal.write(event.data + '\r\n');
+    };
+</script>
 </body>
 </html>
-
