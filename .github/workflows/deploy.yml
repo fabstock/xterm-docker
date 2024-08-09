@@ -1,0 +1,54 @@
+name: CI/CD Pipeline
+
+# Déclenchement du workflow
+on:
+  release:
+    types: [published]  # Déclenché lorsqu'une nouvelle release est publiée
+  push:
+    branches:
+      - main            # Déclenché lors d'un push (merge) sur la branche main
+      - 'feature/*'     # Déclenché lors d'un push sur les branches feature/*
+
+jobs:
+  # Job pour une nouvelle release
+  release:
+    if: github.event_name == 'release' && github.event.action == 'published'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Build and release
+        run: |
+          echo "Building and releasing..."
+          # Ajoutez ici les commandes nécessaires pour votre job release
+          # Par exemple, publier une image Docker, envoyer à un registry, etc.
+
+  # Job pour la branche main
+  master:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and deploy to production
+        run: |
+          echo "Deploying to production..."
+          # Ajoutez ici les commandes nécessaires pour le déploiement en production
+
+  # Job pour les branches feature/*
+  feature:
+    if: startsWith(github.ref, 'refs/heads/feature/')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and test feature branch
+        run: |
+          echo "Building and testing feature branch..."
+          # Ajoutez ici les commandes nécessaires pour tester ou prévisualiser la fonctionnalité

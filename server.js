@@ -3,32 +3,67 @@ const { exec } = require('child_process');
 const http = require('http');
 const WebSocket = require('ws');
 
+const readline = require('readline');
+readline.emitKeypressEvents(process.stdin);
+process.stdin.setRawMode(true);
+
+
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
+
+
+
 
 // Servir le fichier HTML
 app.use(express.static(__dirname));
 
 wss.on('connection', (ws) => {
     ws.on('message', (message) => {
-        // Convertir le message en chaîne de caractères
-        const command = message.toString();
 
-        // Exécuter la commande reçue
+        const command = message.toString().trim();  // Supprime les espaces en début/fin de commande
+	    console.log("cmd: ",command);
+        console.log("size: ",message.length);
+        if (command == 'exit'){
+            process.exit();
+           }
+        
+
+        if (message.length != "") {
+               const command = message.toString().trim();  // Supprime les espaces en début/fin de commande
+	
+             console.log(command);
+ 
+
+    
+
         exec(command, (error, stdout, stderr) => {
             if (error) {
-                ws.send(`Erreur: ${error.message}`);
+                ws.send('Erreur: ${error.message}\r\n');
                 return;
             }
             if (stderr) {
-                ws.send(`Erreur: ${stderr}`);
+                ws.send('Erreur: ${stderr}\r\n');
                 return;
             }
-            ws.send(stdout);
+
+            // Nettoyer la sortie pour assurer un bon affichage dans le terminal
+            ws.send(stdout.replace(/\n/g, '\r\n'));
+          
         });
+    
+    }
+
     });
 });
+
+process.on('SIGINT', function() {
+    console.log("Caught interrupt signal");
+
+    if (i_should_exit)
+        process.exit();
+});
+
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
