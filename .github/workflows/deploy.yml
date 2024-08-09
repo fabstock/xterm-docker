@@ -25,11 +25,8 @@ jobs:
           # Ajoutez ici les commandes nécessaires pour votre job release
           # Par exemple, publier une image Docker, envoyer à un registry, etc.
 
-      - name: use local actions
-               This step references the directory that contains the action.
       - name: Use local hello-world-action
-        uses: ./.github/actions/npm-ci.yaml
-      
+        uses: ./.github/actions/npm-ci      
            
 
 
@@ -40,19 +37,16 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build and deploy to production
         run: |
           echo "Deploying to production..."
           # Ajoutez ici les commandes nécessaires pour le déploiement en production
 
-      - name: use local actions
-               This step references the directory that contains the action.
       - name: Use local hello-world-action
-        uses: ./.github/actions/npm-ci.yaml
-      
-
+        uses: ./.github/actions/npm-ci
+ 
 
 
   # Job pour les branches feature/*
@@ -69,9 +63,7 @@ jobs:
           echo "Building and testing feature branch..."
           # Ajoutez ici les commandes nécessaires pour tester ou prévisualiser la fonctionnalité
 
-      - name: use local actions
-               This step references the directory that contains the action.
       - name: Use local hello-world-action
-        uses: ./.github/actions/npm-ci.yaml
+        uses: ./.github/actions/npm-ci
       
 
