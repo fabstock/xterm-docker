@@ -4,6 +4,7 @@
   "description": "Application xterm.js avec Node.js",
   "main": "server.js",
   "scripts": {
+    "build": "echo build",
     "start": "node server.js"
   },
   "dependencies": {
