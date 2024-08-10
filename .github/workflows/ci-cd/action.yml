@@ -1,6 +1,7 @@
 name: Build & Test
 description: Build & Test
 runs:
+  using: "composite"
   steps:
     - name: Checkout action test 
       uses: actions/checkout@v4
