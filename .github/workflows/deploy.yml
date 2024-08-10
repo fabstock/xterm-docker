@@ -34,9 +34,10 @@ jobs:
 
   # Job pour la branche main
   main:
+    if: github.ref == 'refs/heads/main'
+    #if: startsWith(github.ref, 'refs/heads/main')
     uses: ./.github/workflows/stock-org-ci.yml
     name: Master npm cu 
-    #if: github.ref == 'refs/heads/main'
 
      
 

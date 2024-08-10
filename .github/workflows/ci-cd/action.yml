@@ -30,10 +30,10 @@ jobs:
     name: Build & Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout action test 
-        uses: actions/checkout@v4
-        with: 
-          ref: 'feature/kiki'
+      #- name: Checkout action test 
+      #  uses: actions/checkout@v4
+      #  with: 
+      #    ref: 'feature/kiki'
 
       - name: actions/setup-node@v4
         uses: actions/setup-node@v4
