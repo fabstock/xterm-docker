@@ -1,0 +1,19 @@
+---
+name: Build & Test
+on:
+  workflow_call:
+    #inputs:
+    #  working-directory:
+    #    required: false
+    #    type: string
+    #    default: '.'
+jobs:
+  build_and_test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
