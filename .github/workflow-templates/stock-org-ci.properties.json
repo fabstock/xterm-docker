@@ -1,0 +1,13 @@
+{
+    "name": "Stock Organization Workflow",
+    "description": "Stock Organization CI starter workflow.",
+    "iconName": "example-icon",
+    "categories": [
+        "Learning"
+    ],
+    "filePatterns": [
+        "package*\\.json$",
+        "^Dockerfile",
+        ".*\\.md$"
+    ]
+}
