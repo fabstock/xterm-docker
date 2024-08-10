@@ -26,9 +26,9 @@ jobs:
           # Ajoutez ici les commandes nécessaires pour votre job release
           # Par exemple, publier une image Docker, envoyer à un registry, etc.
 
-      - name: Use local hello-world-action
+      #- name: Use local hello-world-action
         #uses: ./.github/actions/npm-ci      
-        uses: ./.github/workflows/action2.yml     
+        #uses: ./.github/workflows/action2.yml     
            
 
 
@@ -36,7 +36,6 @@ jobs:
   main:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -45,10 +44,9 @@ jobs:
         run: |
           echo "Deploying to production..."
           # Ajoutez ici les commandes nécessaires pour le déploiement en production
-
       - name: Ise local hello-world-action
-        #uses: ./.github/actions/npm-ci
-        uses: ./.github/workflows/action2.yml
+      #  uses: ./.github/workflows/action2
+        uses: ./.github/workflow-templates/stock-org-ci.yml
  
 
 
