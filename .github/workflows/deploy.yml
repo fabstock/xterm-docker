@@ -37,7 +37,11 @@ jobs:
     uses: ./.github/workflows/stock-org-ci.yml
     name: npm cu 
     #if: github.ref == 'refs/heads/main'
- 
+    steps:
+      - name: test
+        uses: ./.github/workflows/stock-org-ci.yml@main
+
+     
 
 
   # Job pour les branches feature/*
