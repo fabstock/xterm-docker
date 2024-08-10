@@ -1,6 +1,12 @@
-name: 'Clean install dependencies and build'
-  description: 'npm ci'
-  run: |
-    npm ci
-    npm run build
+name: "reusable"
+on: [push,pull_request]
+jobs:
+  npmci:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ci
+      run: npm ci
+    - name: build
+      run: npm run build
 

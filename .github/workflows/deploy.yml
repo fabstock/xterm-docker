@@ -27,7 +27,8 @@ jobs:
           # Par exemple, publier une image Docker, envoyer à un registry, etc.
 
       - name: Use local hello-world-action
-        uses: ./.github/actions/npm-ci      
+        #uses: ./.github/actions/npm-ci      
+        uses: ./.github/workflows/action2.yml     
            
 
 
@@ -46,7 +47,10 @@ jobs:
           # Ajoutez ici les commandes nécessaires pour le déploiement en production
 
       - name: Use local hello-world-action
-        uses: ./.github/actions/npm-ci
+        #uses: ./.github/actions/npm-ci
+        uses: ./.github/workflows/action2.yml     
+        permissions:
+          contents: read
  
 
 
