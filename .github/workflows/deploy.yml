@@ -35,6 +35,7 @@ jobs:
   # Job pour la branche main
   main:
     uses: ./.github/workflow-templates/stock-org-ci.yml
+    name: npm cu 
     #if: github.ref == 'refs/heads/main'
  
 
