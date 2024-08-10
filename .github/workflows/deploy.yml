@@ -55,8 +55,8 @@ jobs:
           echo "Building and testing feature branch..."
           # Ajoutez ici les commandes nécessaires pour tester ou prévisualiser la fonctionnalité
 
-      - name: Use local hello-world-action
+      - name: Use local ci-cd -action on feature
         #uses: ./.github/actions/npm-ci
-        uses: ./.github/workflows/ci-cd 
+        uses: ./.github/workflows/ci-cd@feature/kiki
       
 
