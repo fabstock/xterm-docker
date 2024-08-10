@@ -36,17 +36,7 @@ jobs:
   main:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Build and deploy to production
-        run: |
-          echo "Deploying to production..."
-          # Ajoutez ici les commandes nécessaires pour le déploiement en production
-      - name: Ise local hello-world-action
-      #  uses: ./.github/workflows/action2
-        uses: ./.github/workflow-templates/stock-org-ci.yml
+    uses: ./.github/workflow-templates/stock-org-ci.yml
  
 
 
