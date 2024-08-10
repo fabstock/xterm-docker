@@ -34,8 +34,7 @@ jobs:
 
   # Job pour la branche main
   main:
-  uses: 
-    ./.github/workflow-templates/stock-org-ci.yml
+  uses: ./.github/workflow-templates/stock-org-ci.yml
     #if: github.ref == 'refs/heads/main'
  
 
