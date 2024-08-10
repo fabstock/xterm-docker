@@ -1,22 +1,17 @@
 ---
 name: Build & Test
-on:
-  workflow_call:
-    inputs:
-      working-directory:
-        required: false
-        type: string
-        default: '.'
-jobs:
-  build_and_test:
-    name: Build & Test
-    runs-on: ubuntu-latest
-    #defaults:
-    #  run:
-    #    working-directory: ${{ inputs.working-directory }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: npm ci && npm run build
-        run: npm ci && npm run build
+description: Build & test
+  
+inputs:
+  working-directory:
+  required: false
+  type: string
+  default: '.'
+
+runs: ubuntu-latest
+steps:
+  - name: Checkout
+    uses: actions/checkout@v4
+  - name: npm ci && npm run build
+    run: npm ci && npm run build
  
