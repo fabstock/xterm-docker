@@ -2,11 +2,11 @@
 name: Build & Test
 on:
   workflow_call:
-    #inputs:
-    #  working-directory:
-    #    required: false
-    #    type: string
-    #    default: '.'
+    inputs:
+      working-directory:
+        required: false
+        type: string
+        default: '.'
 jobs:
   build_and_test:
     name: Build & Test
