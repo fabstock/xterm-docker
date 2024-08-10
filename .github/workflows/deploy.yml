@@ -49,7 +49,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+        with: 
+          ref: '@feature/kiki'
       - name: Build and test feature branch
         run: |
           echo "Building and testing feature branch..."
