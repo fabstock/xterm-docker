@@ -50,7 +50,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with: 
-          ref: '@feature/kiki'
+          ref: 'feature/kiki'
       - name: Build and test feature branch
         run: |
           echo "Building and testing feature branch..."
@@ -58,6 +58,4 @@ jobs:
 
       - name: Use local ci-cd -action on feature
         #uses: ./.github/actions/npm-ci
-        uses: ./.github/workflows/ci-cd@feature/kiki
-      
-
+        uses: ./.github/workflows/ci-cd
