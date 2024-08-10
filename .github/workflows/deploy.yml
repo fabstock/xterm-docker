@@ -57,6 +57,6 @@ jobs:
 
       - name: Use local hello-world-action
         #uses: ./.github/actions/npm-ci
-        uses: ./.github/workflows/action2.yml     
+        uses: ./.github/workflows/ci-cd 
       
 
