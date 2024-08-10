@@ -1,6 +1,7 @@
 name: Stock Organization CI
 
 on:
+  workflow_call:
   push:
     branches: [ $default-branch ]
   pull_request:
