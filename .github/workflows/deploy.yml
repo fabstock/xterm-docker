@@ -33,7 +33,7 @@ jobs:
 
 
   # Job pour la branche main
-  master:
+  main:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
@@ -46,9 +46,9 @@ jobs:
           echo "Deploying to production..."
           # Ajoutez ici les commandes nécessaires pour le déploiement en production
 
-      - name: Use local hello-world-action
+      - name: Ise local hello-world-action
         #uses: ./.github/actions/npm-ci
-        uses: ./.github/workflows/action2.yml     
+        uses: ./.github/workflows/action2.yml
  
 
 
@@ -59,7 +59,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build and test feature branch
         run: |
@@ -67,6 +67,7 @@ jobs:
           # Ajoutez ici les commandes nécessaires pour tester ou prévisualiser la fonctionnalité
 
       - name: Use local hello-world-action
-        uses: ./.github/actions/npm-ci
+        #uses: ./.github/actions/npm-ci
+        uses: ./.github/workflows/action2.yml     
       
 
