@@ -37,8 +37,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     #if: startsWith(github.ref, 'refs/heads/main')
     uses: ./.github/workflows/stock-org-ci.yml
-    name: Master npm cu 
-
+    name: Main/Master npm ci && .... 
      
 
 
@@ -48,11 +47,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with: 
-          #ref: 'feature/kiki'
-          ref: "${{ github.ref }}"
+      #- name: Checkout code
+      #  uses: actions/checkout@v4
+      #  with: 
+      #    #ref: 'feature/kiki'
+      #    ref: "${{ github.ref }}"
       - name: Build and test feature branch
         run: |
           echo "Building and testing feature branch..."
