@@ -27,15 +27,14 @@ jobs:
           # Par exemple, publier une image Docker, envoyer à un registry, etc.
 
       #- name: Use local hello-world-action
-        #uses: ./.github/actions/npm-ci      
-        #uses: ./.github/workflows/action2.yml     
+      #uses: ./.github/actions/npm-ci      
+      #uses: ./.github/workflows/action2.yml     
            
 
 
   # Job pour la branche main
   main:
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
     uses: ./.github/workflow-templates/stock-org-ci.yml
  
 
