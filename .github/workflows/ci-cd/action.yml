@@ -6,7 +6,7 @@ runs:
     - name: Checkout action test 
       uses: actions/checkout@v4
       with: 
-        ref: 'feature/kiki'
+        ref:  "${{ github.ref }}"
     - name: actions/setup-node@v4
       uses: actions/setup-node@v4
     - name: npm ci
