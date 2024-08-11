@@ -1,38 +1,45 @@
+# Étape 1 : Construction de l'application
 FROM node:alpine as builder
 
-## Install build toolchain, install node deps and compile native add-ons
+# Installer les dépendances nécessaires pour construire des modules natifs
 RUN apk add --no-cache python3 make g++
-COPY package*.json ./
 
-#RUN npm install xtermjs
-RUN npm ci
-
-
-FROM node:alpine as app
-
-## Copy built node modules and binaries without including the toolchain
-COPY --from=builder node_modules .
-
-
-
-# Utiliser une image de base Node.js
-#FROM node:18-alpine
-
-# Définir le répertoire de travail dans le conteneur
+# Définir le répertoire de travail
 WORKDIR /app
 
-# Copier package.json et package-lock.json
-#COPY package*.json ./
+# Copier les fichiers package.json et package-lock.json pour installer les dépendances
+COPY package*.json ./
 
 # Installer les dépendances
-#RUN npm install
+RUN npm ci
 
-# Copier le reste des fichiers de l'application
+# Copier le reste des fichiers de l'application pour construire l'application
 #COPY . .
+COPY node_modules /app/node_modules
+
+# Construire l'application (si nécessaire, par exemple pour un build front-end)
+# RUN npm run build
+
+# Étape 2 : Créer l'image finale
+#FROM builder as app 
+FROM node:alpine
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier les fichiers nécessaires depuis l'étape de construction
+COPY --from=builder /app .
+
+RUN pwd
+RUN ls -altr
+
+
+COPY server.js . 
+COPY index.html .
+
 
 # Exposer le port sur lequel l'application va écouter
 EXPOSE 3000
 
 # Démarrer l'application
 CMD ["npm", "start"]
-
