@@ -20,7 +20,7 @@ RUN addgroup -S app && adduser -S app -G app
 RUN mkdir /app -p && chown -R  app:app  /app 
 # Passer à cet utilisateur non root
 USER app
-RUN id && ls -altrd /app/  && env
+RUN id && ls -altr && pwd   && env
 
 
 
@@ -30,18 +30,21 @@ WORKDIR /app/
 # Copier les fichiers package.json et package-lock.json pour installer les dépendances
 #COPY package*.json ./
 
-COPY --chown=app:app package*.json /app/
+COPY --chown=app:app package*.json ./
 # Installer les dépendances
 RUN npm ci
+RUN id && ls -altr && pwd   && env
 
 # Copier le reste des fichiers de l'application pour construire l'application
 #COPY . .
+#COPY --chown=app:app /app/node_modules ./ 
 #COPY node_modules /app/node_modules
+RUN id && ls -altr && pwd && env
+#COPY --from=builder . .
 
-RUN id && ls -altrd /app/ && env
 
 #COPY  --chown=app:app /app/node_modules /app/
-COPY  --chown=app:app node_modules /app/
+#COPY  --chown=app:app node_modules . 
 
 # Construire l'application (si nécessaire, par exemple pour un build front-end)
 # RUN npm run build
@@ -61,10 +64,10 @@ USER app
 WORKDIR /app
 
 # Copier les fichiers nécessaires depuis l'étape de construction
-COPY --from=builder ./app .
+COPY --from=builder /app  .
 
 
-RUN id && ls -altrd && env
+RUN id && ls -altr && pwd  && env
 
 COPY server.js . 
 COPY index.html .
