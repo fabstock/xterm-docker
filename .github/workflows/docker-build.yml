@@ -16,8 +16,8 @@ jobs:
       - name: Every time
         run: echo "This step will always run"
 
-      #- name: sparse-checkout Dockerfile(*) 
-      #  uses: actions/checkout@v4
+      - name: sparse-checkout Dockerfile(*) 
+        uses: actions/checkout@v4
             
       
       - name: Build docker images
