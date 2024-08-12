@@ -27,9 +27,10 @@ COPY --chown=app:app package*.json ./
 
 # Installer les dépendances
 RUN npm ci
+RUN id && ls -altr && pwd   && env
 
 # Copier le reste des fichiers de l'application pour construire l'application
-COPY --chown=app:app . .
+#COPY --chown=app:app . .
 
 # Étape 2 : Créer l'image finale
 #FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION}
@@ -46,6 +47,8 @@ WORKDIR /app
 
 # Copier les fichiers nécessaires depuis l'étape de construction
 COPY --from=builder /app /app
+RUN id && ls -altr && pwd   && env
+
 
 # Copier les fichiers supplémentaires
 COPY --chown=app:app server.js .
