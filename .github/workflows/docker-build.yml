@@ -5,7 +5,8 @@ on:
     paths:
       - Dockerfile*
       - .github/workflows/docker-build.yml
-    
+   workflow_dispatch:
+ 
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
@@ -32,4 +33,4 @@ jobs:
           docker build -t fabstock2/my-xterm-app-docker . 
           echo ---Containers up—
 
-
+  
