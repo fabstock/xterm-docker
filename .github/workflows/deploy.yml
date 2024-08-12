@@ -60,3 +60,6 @@ jobs:
       - name: Use local ci-cd -action on feature
         #uses: ./.github/actions/npm-ci
         uses: ./.github/workflows/ci-cd
+
+      - name: docker build
+        uses: ./.github/workflows/docker-build.yml
