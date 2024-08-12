@@ -45,9 +45,6 @@ jobs:
   feature:
     if: startsWith(github.ref, 'refs/heads/feature/')
     
-    - name: docker build
-      uses: ./.github/workflows/docker-build.yml 
-
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -64,5 +61,3 @@ jobs:
         #uses: ./.github/actions/npm-ci
         uses: ./.github/workflows/ci-cd
 
-      - name: docker build
-        uses: ./.github/workflows/docker-build.yml
