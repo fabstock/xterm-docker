@@ -40,7 +40,8 @@ RUN npm ci
 #COPY . .
 #COPY node_modules /app/node_modules
 
-COPY --chown=app:app node_modules ./app/node_modules
+COPY  --chown=app:app node_modules .
+
 
 
 
