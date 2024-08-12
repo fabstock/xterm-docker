@@ -16,14 +16,12 @@ jobs:
       - name: Every time
         run: echo "This step will always run"
 
-      - name: sparse-checkout Dockerfile(*) 
-        uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            Dockerfile*
+      #- name: sparse-checkout Dockerfile(*) 
+      #  uses: actions/checkout@v4
+            
       
       - name: Build docker images
-        Id: build-image
+        id: build-image
         run: | 
           echo ---Building images and starting up docker---
           docker build -t fabstock2/my-xterm-app-docker . 
