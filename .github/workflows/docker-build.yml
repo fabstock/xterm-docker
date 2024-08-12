@@ -19,8 +19,8 @@ jobs:
       - name: sparse-checkout Dockerfile(*) 
         uses: actions/checkout@v4
         with:
-        sparse-checkout: |
-          Dockerfile*
+          sparse-checkout: |
+            Dockerfile*
       
       - name: Build docker images
         Id: build-image
