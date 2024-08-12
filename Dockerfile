@@ -2,8 +2,12 @@ ARG NODE_VERSION="20.x"
 ARG ALPINE_VERSION="3.19"
 
 
+
+
 # Étape 1 : Construction de l'application
 FROM node:alpine as builder
+
+
 
 
 # Installer les dépendances nécessaires pour construire des modules natifs
@@ -13,14 +17,15 @@ RUN apk add  --update  --no-cache bash python3 make g++
 #Créer un utilisateur non privilégié pour la construction
 RUN addgroup -S app && adduser -S app -G app
 
+RUN mkdir app -p && chown app:app app
+
 # Passer à cet utilisateur non root
 USER app
 
 
 
-
 # Définir le répertoire de travail
-WORKDIR /app
+WORKDIR ./app
 
 # Copier les fichiers package.json et package-lock.json pour installer les dépendances
 #COPY package*.json ./
@@ -35,7 +40,7 @@ RUN npm ci
 #COPY . .
 #COPY node_modules /app/node_modules
 
-COPY --chown=app:app node_modules /app/node_modules
+COPY --chown=app:app node_modules ./app/node_modules
 
 
 
@@ -54,10 +59,10 @@ USER app
 
 
 # Définir le répertoire de travail
-WORKDIR /app
+WORKDIR ./app
 
 # Copier les fichiers nécessaires depuis l'étape de construction
-COPY --from=builder /app .
+COPY --from=builder ./app .
 
 RUN pwd
 RUN ls -altr
