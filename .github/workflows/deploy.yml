@@ -44,8 +44,11 @@ jobs:
   # Job pour les branches feature/*
   feature:
     if: startsWith(github.ref, 'refs/heads/feature/')
-    runs-on: ubuntu-latest
+    
+    - name: docker build
+      uses: ./.github/workflows/docker-build.yml 
 
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
