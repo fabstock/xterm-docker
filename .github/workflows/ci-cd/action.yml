@@ -20,4 +20,4 @@ runs:
       #shell: bash
     - name: env && variables 
       run: env &&  echo "${{ github.ref }}"
-      #shell: bash
+      shell: bash
